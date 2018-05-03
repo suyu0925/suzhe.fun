@@ -1,0 +1,17 @@
+{
+  "name": "arithmetic",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {
+    "printd": "0.0.12",
+    "vue": "2.5.16"
+  },
+  "devDependencies": {
+    "typescript": "2.8.3",
+    "webpack": "4.6.0"
+  }
+}
