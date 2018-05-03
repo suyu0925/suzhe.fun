@@ -61,6 +61,10 @@ ajv@^6.1.0:
     json-schema-traverse "^0.3.0"
     uri-js "^3.0.2"
 
+algebra.js@^0.2.6:
+  version "0.2.6"
+  resolved "http://npm.kuyuad.com/algebra.js/-/algebra.js-0.2.6.tgz#23aacc86f8634e4c206d56c8077ef220a6221c74"
+
 alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "http://npm.kuyuad.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
@@ -1519,7 +1523,7 @@ css-color-names@0.0.4:
   version "0.0.4"
   resolved "http://npm.kuyuad.com/css-color-names/-/css-color-names-0.0.4.tgz#808adc2e79cf84738069b646cb20ec27beb629e0"
 
-css-loader@^0.28.11:
+css-loader@0.28.11:
   version "0.28.11"
   resolved "http://npm.kuyuad.com/css-loader/-/css-loader-0.28.11.tgz#c3f9864a700be2711bb5a2462b2389b1a392dab7"
   dependencies:
@@ -5921,7 +5925,7 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.0"
   resolved "http://npm.kuyuad.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
-vue-loader@^15.0.7:
+vue-loader@15.0.7:
   version "15.0.7"
   resolved "http://npm.kuyuad.com/vue-loader/-/vue-loader-15.0.7.tgz#7ee279e7c760e1910e1e7bb0d7ad364c9e9b2954"
   dependencies:
@@ -5938,7 +5942,7 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-template-compiler@^2.5.16:
+vue-template-compiler@2.5.16:
   version "2.5.16"
   resolved "http://npm.kuyuad.com/vue-template-compiler/-/vue-template-compiler-2.5.16.tgz#93b48570e56c720cdf3f051cc15287c26fbd04cb"
   dependencies:

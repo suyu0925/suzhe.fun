@@ -16,7 +16,7 @@
         <h3 
           v-for="(equation, index) in row"
           :key="index">
-          {{ equation }}
+          <span v-html="equation"></span>
         </h3>
       </div>
     </div>
@@ -26,27 +26,22 @@
 <script>
 import { Printd } from 'printd'
 import cssText from './printCss'
+import generate from './utils/equation'
 
 export default {
   data() {
+    const equations = []
+    for (let i = 0; i < 20; i++) {
+      const row = []
+      for (let j = 0; j < 5; j++) {
+        const equation = generate()
+        row.push(equation)
+      }
+      equations.push(row)
+    }
     return {
       d: new Printd(),
-      equations: [
-        [
-          '1+2=',
-          '2+3=',
-          '2+3=',
-          '2+3=',
-          '2+3='
-        ],
-        [
-          '1+2=',
-          '2+3=',
-          '2+3=',
-          '2×3=',
-          '2÷3='
-        ]
-      ]
+      equations
     }
   },
   methods: {

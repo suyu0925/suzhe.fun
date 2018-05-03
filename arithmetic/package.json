@@ -1,6 +1,6 @@
 {
   "name": "arithmetic",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -8,6 +8,7 @@
     "build": "node scripts/build.js"
   },
   "dependencies": {
+    "algebra.js": "0.2.6",
     "printd": "0.0.12",
     "vue": "2.5.16"
   },
