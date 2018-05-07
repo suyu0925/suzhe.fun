@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="center">
-      <h1> {{ title }} </h1>
+      <h1> {{ config.title }} </h1>
     </div>
     <div class="row center">
       <h2>班级</h2>
       <h2 class="name">姓名</h2>
     </div>
     <div class="row" 
-      v-for="(row, index) in equations"
+      v-for="(row, index) in getEquations"
       :key="index">
       <h3 
         v-for="(equation, index) in row"
@@ -28,20 +28,59 @@ export default {
     title: {
       type: String,
       default: '100以内加减混合'
+    },
+    config: {
+      type: Object
     }
   },
   data() {
-    const equations = []
-    for (let i = 0; i < 20; i++) {
-      const row = []
-      for (let j = 0; j < 5; j++) {
-        const equation = generate()
-        row.push(equation)
-      }
-      equations.push(row)
-    }
     return {
-      equations
+    }
+  },
+  computed: {
+    getEquations: function () {
+      let range = {}
+      if (this.config.range === 1) {
+        range.min = 1
+        range.max = 9
+        range.result = {
+          min: 0,
+          max: 18
+        }
+      } else if (this.config.range === 2) {
+        range.min = 1
+        range.max = 99
+        range.result = {
+          min: 0,
+          max: 99
+        }
+      } else if (this.config.range === 3) {
+        range.min = 1
+        range.max = 999
+        range.result = {
+          min: 0,
+          max: 999
+        }
+      }
+
+      const equations = []
+      for (let i = 0; i < 25; i++) {
+        const row = []
+        for (let j = 0; j < 4; j++) {
+          const equation = generate({
+            range: range,
+            operators: this.config.operators,
+            parenthese: this.config.side.indexOf('左侧') >= 0,
+            length: this.config.numbers
+          })
+          row.push(equation)
+        }
+        equations.push(row)
+      }
+
+      console.log(equations.length)
+
+      return equations
     }
   }
 }

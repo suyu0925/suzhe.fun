@@ -1,5 +1,19 @@
 import { Expression, Equation, parse } from 'algebra.js'
 
+const NatualSigns = {
+  Add: '+',
+  Subtract: '-',
+  Multiply: '×',
+  Divide: '÷'
+}
+
+const ComputedSigns = {
+  Add: '+',
+  Subtract: '-',
+  Multiply: '*',
+  Divide: '/'
+}
+
 const log = function () {
   // console.log.apply(console, arguments)
 }
@@ -68,12 +82,21 @@ const pad = function (word, digits) {
   return word
 }
 
+const leftpad = function (str, length, char) {
+  const n = length - str.length
+  for (let i = 0; i < n; i++) {
+    str = (char || ' ') + str
+  }
+  return str
+}
+
 const stringify = function (words, parenthese) {
   let str = ''
   for (const word of words) {
-    str += word === 'x' ? (parenthese ? '(  )' : '  ') : pad(word)
+    str += word === 'x' ? (parenthese ? '(  )' : '  ') : word
   }
-  return str.replace(/ /g, '&nbsp;')
+  str = leftpad(str, 10, ' ')
+  return str.replace(/ /g, '&nbsp;').replace(/\//g, '÷').replace(/\*/g, '×')
 }
 
 const generateEquation = function (params) {
@@ -87,7 +110,15 @@ const generateEquation = function (params) {
       max: 99
     }
   }
-  const operators = params.operators || ['+', '-']
+  const operators = (params.operators || ['+', '-']).map(operator => {
+    if (operator === '×') {
+      return '*'
+    } else if (operator === '÷') {
+      return '/'
+    } else {
+      return operator
+    }
+  })
   const parenthese = params.parenthese || false
   const length = params.length || 2
 

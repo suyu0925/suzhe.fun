@@ -1,19 +1,19 @@
 <template>
   <el-container>
     <el-aside style="background-color: #D3DCE6">
-      <console></console>
+      <console v-model="config"></console>
       <div class="print_button">
         <el-button 
           @click="print" 
           type="primary" 
           round>
-          打印
+          点我打印
         </el-button>
       </div>
     </el-aside>
 
     <el-main style="background-color: #E9EEF3">
-      <paper ref="paper"></paper>
+      <paper :config="config" ref="paper"></paper>
     </el-main>
   </el-container>
 </template>
@@ -31,7 +31,14 @@ export default {
   },
   data() {
     return {
-      d: new Printd()
+      d: new Printd(),
+      config: {
+        range: 1,
+        operators: ['+', '-'],
+        side: ['右侧'],
+        numbers: 2,
+        title: '练习题'
+      }
     }
   },
   methods: {
