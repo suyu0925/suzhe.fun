@@ -5,8 +5,10 @@ const { resolve } = require('path')
 const dist = resolve(__dirname, '../dist')
 const src = resolve(__dirname, '../src')
 
+const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production'
+
 module.exports = {
-  mode: 'none',
+  mode,
   devServer: {
     open: true
   },
