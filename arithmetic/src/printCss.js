@@ -26,7 +26,7 @@ div.row > h2 {
   display: inline;
 }
 
-div.row > h3 {
+h3 {
   float: left;
   font-size: 1.5em;
   /*Consolas Courier New*/
@@ -34,6 +34,15 @@ div.row > h3 {
   width: 20%;
   margin-top: 0;
   margin-bottom: 0.9em;
+}
+
+.incompact {
+  font-size: 1.3em;
+  width: 25%;
+}
+
+.most-incompact {
+  width: 33%;
 }
 
 .name {

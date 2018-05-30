@@ -11,6 +11,7 @@
       v-for="(row, index) in getEquations"
       :key="index">
       <h3 
+        :class="config.numbers === 3 ? (config.range === 3 ? 'most-incompact': 'incompact') : ''"
         v-for="(equation, index) in row"
         :key="index">
         <span v-html="equation"></span>
@@ -64,21 +65,24 @@ export default {
       }
 
       const equations = []
-      for (let i = 0; i < 25; i++) {
+      const rows = this.config.numbers === 3 ? (this.config.range === 3 ? 20 : 24) : 20
+      const cols = this.config.numbers === 3 ? (this.config.range === 3 ? 3 : 4) : 5
+      for (let i = 0; i < rows; i++) {
         const row = []
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < cols; j++) {
           const equation = generate({
             range: range,
             operators: this.config.operators,
             parenthese: this.config.side.indexOf('左侧') >= 0,
-            length: this.config.numbers
+            length: this.config.numbers,
+            blank: this.config.blank
           })
           row.push(equation)
         }
         equations.push(row)
       }
 
-      console.log(equations.length)
+      // console.log(equations.length)
 
       return equations
     }
@@ -114,7 +118,7 @@ div.row > h2 {
   display: inline;
 }
 
-div.row > h3 {
+h3 {
   float: left;
   font-size: 1.5em;
   /*Consolas Courier New*/
@@ -122,6 +126,16 @@ div.row > h3 {
   width: 20%;
   margin-top: 0;
   margin-bottom: 0.9em;
+}
+
+.incompact {
+  width: 25%;
+  font-size: 1.3em;
+}
+
+.most-incompact {
+  width: 33%;
+  font-size: 1.3em;
 }
 
 .name {

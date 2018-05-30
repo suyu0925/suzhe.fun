@@ -37,6 +37,10 @@
           <el-checkbox label="右侧" name="type"></el-checkbox>
         </el-checkbox-group>
       </el-form-item>
+      <el-form-item label="填空显示类型">
+        <el-radio v-model="value.blank" label="空格" @change="$emit('input', value)"></el-radio>
+        <el-radio v-model="value.blank" label="下划线" @change="$emit('input', value)"></el-radio>
+      </el-form-item>
     </el-form>
   </div>
 </template>

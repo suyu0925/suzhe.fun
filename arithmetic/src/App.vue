@@ -37,7 +37,8 @@ export default {
         operators: ['+', '-'],
         side: ['右侧'],
         numbers: 2,
-        title: '练习题'
+        title: '练习题',
+        blank: '空格'
       }
     }
   },

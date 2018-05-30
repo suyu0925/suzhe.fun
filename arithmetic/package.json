@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build && pm2 start scripts/serve.js -n arithmetic",
+    "restart": "npm run build && pm2 restart scripts/serve.js -n arithmetic",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config scripts/webpack.config.js",
     "build": "node scripts/build.js"
   },

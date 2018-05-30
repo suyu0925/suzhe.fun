@@ -90,10 +90,14 @@ const leftpad = function (str, length, char) {
   return str
 }
 
-const stringify = function (words, parenthese) {
+const stringify = function (words, parenthese, blank) {
   let str = ''
   for (const word of words) {
-    str += word === 'x' ? (parenthese ? '(  )' : '  ') : word
+    if (blank === '下划线') {
+      str += word === 'x' ? (parenthese ? '___' : '___') : word
+    } else {
+      str += word === 'x' ? (parenthese ? '(  )' : '  ') : word
+    }
   }
   str = leftpad(str, 10, ' ')
   return str.replace(/ /g, '&nbsp;').replace(/\//g, '÷').replace(/\*/g, '×')
@@ -121,6 +125,7 @@ const generateEquation = function (params) {
   })
   const parenthese = params.parenthese || false
   const length = params.length || 2
+  const blank = params.blank || '空格'
 
   while (true) {
     // generate words
@@ -179,7 +184,7 @@ const generateEquation = function (params) {
       continue
     }
 
-    return stringify(words, parenthese)
+    return stringify(words, parenthese, blank)
   }
 }
 
