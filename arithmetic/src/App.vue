@@ -38,7 +38,8 @@ export default {
         side: ['右侧'],
         numbers: 2,
         title: '练习题',
-        blank: '空格'
+        blank: '空格',
+        whole: []
       }
     }
   },

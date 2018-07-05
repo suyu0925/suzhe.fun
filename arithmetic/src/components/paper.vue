@@ -75,7 +75,8 @@ export default {
             operators: this.config.operators,
             parenthese: this.config.side.indexOf('左侧') >= 0,
             length: this.config.numbers,
-            blank: this.config.blank
+            blank: this.config.blank,
+            whole: this.config.whole
           })
           row.push(equation)
         }

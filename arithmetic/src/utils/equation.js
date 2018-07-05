@@ -126,6 +126,7 @@ const generateEquation = function (params) {
   const parenthese = params.parenthese || false
   const length = params.length || 2
   const blank = params.blank || '空格'
+  const tens = params.whole ? params.whole.indexOf('整十') >= 0 : false
 
   while (true) {
     // generate words
@@ -137,7 +138,12 @@ const generateEquation = function (params) {
         words.push('x')
         hasParenthese = true
       } else {
-        const num = Math.floor(Math.random() * (range.max - range.min)) + range.min
+        let num = Math.floor(Math.random() * (range.max - range.min)) + range.min
+        if (tens) {
+          if (num > 10) {
+            num = 10 * Math.floor(num / 10)
+          }
+        }
         words.push(num)
       }
 

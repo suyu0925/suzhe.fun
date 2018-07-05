@@ -15,6 +15,13 @@
           <el-option label="1000以内" :value="3"></el-option>
         </el-select>
       </el-form-item>
+      <el-form-item label="凑整">
+        <el-checkbox-group
+          v-model="value.whole"
+          @change="$emit('input', value)">
+          <el-checkbox label="整十" name="type"></el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
       <el-form-item label="运算符">
         <el-checkbox-group 
           v-model="value.operators"
