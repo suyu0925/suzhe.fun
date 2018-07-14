@@ -67,10 +67,13 @@ export default {
       const equations = []
       let rows = this.config.numbers === 3 ? (this.config.range === 3 ? 20 : 24) : 20
       let cols = this.config.numbers === 3 ? (this.config.range === 3 ? 3 : 4) : 5
-      if (this.config.side.indexOf('左侧') >= 0 && range.max > 99) {
-        rows = Math.min(rows, 24)
-        cols = Math.min(cols, 4)
+
+      // 三位数+左侧+两个数字
+      if (this.config.side.indexOf('左侧') >= 0 && this.config.range === 3 && this.config.numbers === 2) {
+        rows = 24
+        cols = 4
       }
+
       for (let i = 0; i < rows; i++) {
         const row = []
         for (let j = 0; j < cols; j++) {
