@@ -11,7 +11,7 @@
       v-for="(row, index) in getEquations"
       :key="index">
       <h3 
-        :class="config.numbers === 3 ? (config.range === 3 ? 'most-incompact': 'incompact') : ''"
+        :class="getColumnClass()"
         v-for="(equation, index) in row"
         :key="index">
         <span v-html="equation"></span>
@@ -65,8 +65,12 @@ export default {
       }
 
       const equations = []
-      const rows = this.config.numbers === 3 ? (this.config.range === 3 ? 20 : 24) : 20
-      const cols = this.config.numbers === 3 ? (this.config.range === 3 ? 3 : 4) : 5
+      let rows = this.config.numbers === 3 ? (this.config.range === 3 ? 20 : 24) : 20
+      let cols = this.config.numbers === 3 ? (this.config.range === 3 ? 3 : 4) : 5
+      if (this.config.side.indexOf('左侧') >= 0 && range.max > 99) {
+        rows = Math.min(rows, 24)
+        cols = Math.min(cols, 4)
+      }
       for (let i = 0; i < rows; i++) {
         const row = []
         for (let j = 0; j < cols; j++) {
@@ -86,6 +90,17 @@ export default {
       // console.log(equations.length)
 
       return equations
+    }
+  },
+  methods: {
+    getColumnClass() {
+      let columnClass = ''
+      if (this.config.numbers === 3) {
+        columnClass = (this.config.range === 3 ? 'most-incompact' : 'incompact')
+      } else if (this.config.side.indexOf('左侧') >= 0 && this.config.range === 3) {
+        columnClass = 'incompact'
+      }
+      return columnClass
     }
   }
 }
