@@ -1,4 +1,5 @@
 import { Expression, Equation, parse } from 'algebra.js'
+import devide from './devide'
 
 const NatualSigns = {
   Add: '+',
@@ -127,6 +128,10 @@ const generateEquation = function (params) {
   const length = params.length || 2
   const blank = params.blank || '空格'
   const tens = params.whole ? params.whole.indexOf('整十') >= 0 : false
+
+  if (operators.length === 1 && operators[0] == '/' && length === 2 && !parenthese) {
+    return devide(range, operators, parenthese, length, blank, tens)
+  }
 
   while (true) {
     // generate words
