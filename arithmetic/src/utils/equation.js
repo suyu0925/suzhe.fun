@@ -1,5 +1,7 @@
 import { Expression, Equation, parse } from 'algebra.js'
 import devide from './devide'
+import multiply from './multiply'
+import { formatEquation, leftpad, log } from './index'
 
 const NatualSigns = {
   Add: '+',
@@ -13,10 +15,6 @@ const ComputedSigns = {
   Subtract: '-',
   Multiply: '*',
   Divide: '/'
-}
-
-const log = function () {
-  // console.log.apply(console, arguments)
 }
 
 const randomChoose = function (array) {
@@ -83,14 +81,6 @@ const pad = function (word, digits) {
   return word
 }
 
-const leftpad = function (str, length, char) {
-  const n = length - str.length
-  for (let i = 0; i < n; i++) {
-    str = (char || ' ') + str
-  }
-  return str
-}
-
 const stringify = function (words, parenthese, blank) {
   let str = ''
   for (const word of words) {
@@ -128,9 +118,18 @@ const generateEquation = function (params) {
   const length = params.length || 2
   const blank = params.blank || '空格'
   const tens = params.whole ? params.whole.indexOf('整十') >= 0 : false
+  const operator = randomChoose(operators)
 
-  if (operators.length === 1 && operators[0] == '/' && length === 2 && !parenthese) {
-    return devide(range, operators, parenthese, length, blank, tens)
+  // 针对除法特殊处理
+  if (operator == '/' && length === 2 && !parenthese) {
+    const words = devide(range, operators, parenthese, length, blank, tens)
+    return stringify(words, parenthese, blank)
+  }
+
+  // 针对乘法特殊处理
+  if (operator === '*' && length === 2 && !parenthese) {
+    const words = multiply(range, operators, parenthese, length, blank, tens)
+    return stringify(words, parenthese, blank)
   }
 
   while (true) {

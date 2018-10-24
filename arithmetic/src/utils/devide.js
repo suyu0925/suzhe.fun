@@ -45,8 +45,7 @@ function devide(range, operators, parenthese, length, blank, tens) {
       break
     }
   }
-  const str = `${a}/${b}=  `
-  return str.replace(/ /g, '&nbsp;').replace(/\//g, '÷').replace(/\*/g, '×')
+  return `${a}/${b}=x`
 }
 
 export default devide
