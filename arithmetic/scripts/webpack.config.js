@@ -16,7 +16,7 @@ module.exports = {
     app: resolve(src, 'index.js')
   },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash:8].js',
     path: dist,
     publicPath: '/'
   },
