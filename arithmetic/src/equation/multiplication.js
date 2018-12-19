@@ -1,8 +1,33 @@
 import { randchoose, randrange } from '@/utils'
 
 const multiplication = function (grade, type) {
+  // 乘法
+  // aa * b = xx
   if (grade === 3 && type === 1) {
-    // a|a5 * b * c = xx|xx0
+    let a, b, x
+    do {
+      a = randrange(10, 100)
+      b = randrange(2, 10)
+      x = a * b
+    } while (x < 10)
+    return `${a}×${b}=`
+  }
+
+  // 乘法
+  // aa * b = xx
+  if (grade === 3 && type === 2) {
+    let a, b, x
+    do {
+      a = randrange(100, 1000)
+      b = randrange(2, 10)
+      x = a * b
+    } while (x < 10)
+    return `${a}×${b}=`
+  }
+
+  // 连乘
+  // a|a5 * b * c = xx|xx0
+  if (grade === 3 && type === 3) {
     let a, b, c, x
     do {
       b = randrange(2, 10)

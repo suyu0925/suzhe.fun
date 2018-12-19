@@ -30,7 +30,7 @@ export default {
       d: new Printd(),
       config: {
         grade: 3,
-        type: 'devide_1',
+        type: 'multiplication_1',
         title: '练习题'
       },
       loading: false

@@ -46,24 +46,51 @@ export default {
   methods: {
     matchTypeOptions() {
       // 修改typeOptions
-      if (this.value.grade === 3) {
+      if (this.value.grade === 1) {
         this.typeOptions = [
+          {
+            label: '加法练习（1）',
+            value: 'additive_1'
+          },
+          {
+            label: '加法练习（2）',
+            value: 'additive_2'
+          }
+        ]
+      } else if (this.value.grade === 3) {
+        this.typeOptions = [
+          {
+            label: '乘法练习（1）',
+            value: 'multiplication_1'
+          },
+          {
+            label: '乘法练习（2）',
+            value: 'multiplication_2'
+          },
+          {
+            label: '连乘练习（1）',
+            value: 'multiplication_continuous_1'
+          },
           {
             label: '除法练习（1）',
             value: 'devide_1'
           },
           {
-            label: '连乘练习（1）',
-            value: 'multiplication_continuous_1'
+            label: '除法练习（2）',
+            value: 'devide_2'
+          },
+          {
+            label: '除法练习（3）',
+            value: 'devide_3'
           }
         ]
-        const selectOption = this.typeOptions.find(
-          o => o.value === this.value.type
-        )
-        if (selectOption) this.value.title = selectOption.label
       } else {
         this.typeOptions = []
       }
+      const selectOption = this.typeOptions.find(
+        o => o.value === this.value.type
+      )
+      if (selectOption) this.value.title = selectOption.label
     },
     onChangeGrade() {
       this.matchTypeOptions()
