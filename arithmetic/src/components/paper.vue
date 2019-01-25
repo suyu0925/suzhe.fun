@@ -30,6 +30,7 @@
 <script>
 import additive from '@/equation/additive'
 import division from '@/equation/division'
+import parentheses from '@/equation/parentheses'
 import multiplication from '@/equation/multiplication'
 
 export default {
@@ -41,10 +42,19 @@ export default {
   },
   computed: {
     layout: function() {
-      return {
-        rows: 20,
-        cols: 5
+      if (
+        this.config.type === 'parentheses_1' ||
+        this.config.type === 'parentheses_2'
+      ) {
+        return { rows: 20, cols: 3 }
+      } else {
+        return { rows: 20, cols: 5 }
       }
+    }
+  },
+  data() {
+    return {
+      cache: {}
     }
   },
   methods: {
@@ -72,6 +82,22 @@ export default {
           return multiplication(3, 2)
         } else if (this.config.type === 'multiplication_continuous_1') {
           return multiplication(3, 3)
+        } else if (this.config.type === 'parentheses_1') {
+          if (row % 2 === 1) {
+            return this.cache[`${row},${col}`]
+          }
+
+          const tuple = parentheses(3, 1)
+          this.cache[`${row + 1},${col}`] = tuple[1]
+          return tuple[0]
+        } else if (this.config.type === 'parentheses_2') {
+          if (row % 2 === 1) {
+            return this.cache[`${row},${col}`]
+          }
+
+          const tuple = parentheses(3, 2)
+          this.cache[`${row + 1},${col}`] = tuple[1]
+          return tuple[0]
         }
       }
       return ''

@@ -3,8 +3,15 @@
  * @param {*} min 
  * @param {*} max 
  */
-export function randrange(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min
+export function randrange(min, max, step) {
+  if (step === undefined) {
+    return Math.floor(Math.random() * (max - min)) + min
+  } else {
+    max = Math.floor(max / step)
+    min = Math.ceil(min / step)
+    const grade = Math.floor(Math.random() * (max - min)) + min
+    return grade * step
+  }
 }
 
 export function randchoose(arr) {

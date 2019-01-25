@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const { resolve } = require('path')
@@ -49,6 +50,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve(src, './index.html')
     }),
+    new CopyWebpackPlugin([{
+      from: resolve(src, './favicon.ico')
+    }]),
     new VueLoaderPlugin()
   ]
 }
