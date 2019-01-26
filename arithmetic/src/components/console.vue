@@ -84,6 +84,10 @@ export default {
             value: 'devide_3'
           },
           {
+            label: '除法练习（4）',
+            value: 'devide_4'
+          },
+          {
             label: '括号练习（1）',
             value: 'parentheses_1'
           },

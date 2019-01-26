@@ -33,6 +33,17 @@ const devide = function (grade, type) {
     } while (c < 100 || c >= 1000)
     return `${c}÷${a}=`
   }
+
+  if (grade === 3 && type === 4) {
+    // 要输出yyy / aa = ，所以先生成aa * xx|xxx = yyy
+    let a, x, c
+    do {
+      a = randrange(10, 100)
+      x = randrange(10, 100)
+      c = a * x
+    } while (c < 100 || c >= 1000)
+    return `${c}÷${a}=`
+  }
 }
 
 export default devide

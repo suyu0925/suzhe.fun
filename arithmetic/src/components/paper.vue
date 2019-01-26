@@ -76,6 +76,8 @@ export default {
           return division(3, 2)
         } else if (this.config.type === 'devide_3') {
           return division(3, 3)
+        } else if (this.config.type === 'devide_4') {
+          return division(3, 4)
         } else if (this.config.type === 'multiplication_1') {
           return multiplication(3, 1)
         } else if (this.config.type === 'multiplication_2') {
