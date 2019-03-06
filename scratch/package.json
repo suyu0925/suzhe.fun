@@ -1,0 +1,13 @@
+{
+  "name": "scratch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "pm2 startOrReload pm2.config.js"
+  },
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-static": "^5.0.0"
+  }
+}
