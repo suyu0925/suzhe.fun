@@ -62,6 +62,7 @@
 
     <script>
         window.onload = function () {
+            var running = false;
             window.devicePixelRatio = 1;
 
             var canvas = document.getElementById('test');
@@ -106,6 +107,7 @@
             document.getElementById('play').onclick = function () {
                 document.getElementById('overlay').style.display = "none";
                 vm.greenFlag(); // 执行程序
+                running = true;
             };
 
             attachMouseEvents(canvas);
@@ -148,7 +150,9 @@
                 // console.log('monMouseDown', data)
                 vm.postIOData('mouse', data);
 
-                // e.preventDefault();
+                if (running) {
+                    e.preventDefault();
+                }
             }
 
             function onMouseMove(e) {
@@ -163,7 +167,9 @@
                 // console.log('monMouseMove', coordinates)
                 vm.postIOData('mouse', coordinates);
 
-                e.preventDefault();
+                if (running) {
+                    e.preventDefault();
+                }
             }
 
             function onMouseUp(e) {
@@ -180,7 +186,9 @@
                 // console.log('onMouseUp', data);
                 vm.postIOData('mouse', data);
 
-                e.preventDefault();
+                if (running) {
+                    e.preventDefault();
+                }
             }
 
             function handleKeyDown(e) {
