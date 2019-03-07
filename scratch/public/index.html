@@ -181,7 +181,7 @@
                 // Don't capture keys intended for Blockly inputs.
                 if (e.target !== document && e.target !== document.body) return;
 
-                console.log("handleKeyDown", e)
+                // console.log("handleKeyDown", e)
 
                 vm.postIOData('keyboard', {
                     keyCode: e.keyCode,
@@ -198,7 +198,7 @@
             function handleKeyUp(e) {
                 // Always capture up events,
                 // even those that have switched to other targets.
-                console.log("handleKeyUp", e)
+                // console.log("handleKeyUp", e)
 
                 vm.postIOData('keyboard', {
                     keyCode: e.keyCode,
