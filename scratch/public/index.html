@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, min-width=480px, initial-scale=1">
     <meta name="google" value="notranslate">
     <link rel="shortcut icon" href="static/favicon.ico">
     <title>scratch</title>
@@ -13,11 +13,7 @@
             display: block;
             width: 480px;
             height: 360px;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 1);
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("snapshot.png");
             z-index: 2;
             cursor: pointer;
         }
@@ -38,6 +34,9 @@
             top: 50%;
             left: 50%;
             font-size: 50px;
+            background: blue;
+            padding: 10px;
+            border-radius: 50%;
             color: white;
             transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
@@ -47,15 +46,17 @@
 
 <body>
     <div id="overlay">
-        <div id="text">加载中</div>
+        <!-- <div id="snapshot"><img src="snapshot.png"></div> -->
+        <div id="text">加载中...</div>
         <div id="play">播放</div>
     </div>
     <div style="width: 480px;height: 360px;display: block">
-        <canvas id="test" width="480" height="360" style="display: block"></canvas>
+        <canvas id="test" width="480px" height="360px" style="display: block"></canvas>
     </div>
 
     <script src="./scripts/scratch-vm.min.js"></script>
     <script src="./scripts/scratch-storage.min.js"></script>
+    <script src="./scripts/scratch-audio.min.js"></script>
     <script src="./scripts/scratch-svg-renderer.min.js"></script>
     <script src="./scripts/scratch-render.min.js"></script>
 
@@ -67,6 +68,7 @@
             var render = new ScratchRender(canvas);
             var vm = new VirtualMachine();
             var storage = new ScratchStorage();
+            var audio = new AudioEngine();
             // var mockMouse = data => vm.runtime.postIOData('mouse', {
             //     canvasWidth: canvas.width,
             //     canvasHeight: canvas.height,
@@ -75,11 +77,12 @@
 
             vm.attachStorage(storage);
             vm.attachRenderer(render);
+            vm.attachAudioEngine(audio);
             vm.attachV2SVGAdapter(new ScratchSVGRenderer.SVGRenderer());
             vm.attachV2BitmapAdapter(new ScratchSVGRenderer.BitmapAdapter());
 
             var request = new XMLHttpRequest();
-            request.open('GET', "./Demo.sb3", true);
+            request.open('GET', "./FireWorks.sb2", true);
             request.responseType = 'blob';
             request.onload = function () {
                 var reader = new FileReader();
