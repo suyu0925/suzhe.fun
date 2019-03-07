@@ -82,7 +82,11 @@
             vm.attachV2BitmapAdapter(new ScratchSVGRenderer.BitmapAdapter());
 
             var request = new XMLHttpRequest();
-            request.open('GET', "./FireWorks.sb2", true);
+            var sbfile = "Slither.io.sb3";
+            // var sbfile = "FireWorks.sb2";
+            // var sbfile = "Pingpong.sb3";
+            // var sbfile = "Flappy Bird.sb3";
+            request.open('GET', "./" + sbfile, true);
             request.responseType = 'blob';
             request.onload = function () {
                 var reader = new FileReader();
@@ -103,6 +107,110 @@
                 document.getElementById('overlay').style.display = "none";
                 vm.greenFlag(); // 执行程序
             };
+
+            attachMouseEvents(canvas);
+            attachKeyboardEvents();
+
+            function attachMouseEvents(canvas) {
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+                document.addEventListener('touchmove', onMouseMove);
+                document.addEventListener('touchend', onMouseUp);
+                canvas.addEventListener('mousedown', onMouseDown);
+                canvas.addEventListener('touchstart', onMouseDown);
+                // canvas.addEventListener('wheel', onWheel);
+            }
+
+            function attachKeyboardEvents() {
+                document.addEventListener('keydown', handleKeyDown);
+                document.addEventListener('keyup', handleKeyUp);
+            }
+
+            function getEventXY(e) {
+                if (e.touches && e.touches[0]) {
+                    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                } else if (e.changedTouches && e.changedTouches[0]) {
+                    return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+                }
+                return { x: e.clientX, y: e.clientY };
+            }
+
+            function onMouseDown(e) {
+                var { x, y } = getEventXY(e);
+                var mousePosition = [x - canvas.clientLeft, y - canvas.clientTop];
+                var data = {
+                    isDown: true,
+                    x: mousePosition[0],
+                    y: mousePosition[1],
+                    canvasWidth: canvas.width,
+                    canvasHeight: canvas.height
+                };
+                // console.log('monMouseDown', data)
+                vm.postIOData('mouse', data);
+            }
+
+            function onMouseMove(e) {
+                var { x, y } = getEventXY(e);
+                var mousePosition = [x - canvas.clientLeft, y - canvas.clientTop];
+                var coordinates = {
+                    x: mousePosition[0],
+                    y: mousePosition[1],
+                    canvasWidth: canvas.width,
+                    canvasHeight: canvas.height
+                };
+                // console.log('monMouseMove', coordinates)
+                vm.postIOData('mouse', coordinates);
+            }
+
+            function onMouseUp(e) {
+                var { x, y } = getEventXY(e);
+                var mousePosition = [x - canvas.clientLeft, y - canvas.clientTop];
+                var data = {
+                    isDown: false,
+                    x: x - canvas.left,
+                    y: y - canvas.top,
+                    canvasWidth: canvas.width,
+                    canvasHeight: canvas.height,
+                    wasDragged: false
+                }
+                // console.log('onMouseUp', data);
+                vm.postIOData('mouse', data);
+            }
+
+            function handleKeyDown(e) {
+                // Don't capture keys intended for Blockly inputs.
+                if (e.target !== document && e.target !== document.body) return;
+
+                console.log("handleKeyDown", e)
+
+                vm.postIOData('keyboard', {
+                    keyCode: e.keyCode,
+                    key: e.key,
+                    isDown: true
+                });
+
+                // Prevent space/arrow key from scrolling the page.
+                if (e.keyCode === 32 || // 32=space
+                    (e.keyCode >= 37 && e.keyCode <= 40)) { // 37, 38, 39, 40 are arrows
+                    e.preventDefault();
+                }
+            }
+            function handleKeyUp(e) {
+                // Always capture up events,
+                // even those that have switched to other targets.
+                console.log("handleKeyUp", e)
+
+                vm.postIOData('keyboard', {
+                    keyCode: e.keyCode,
+                    key: e.key,
+                    isDown: false
+                });
+
+                // E.g., prevent scroll.
+                if (e.target !== document && e.target !== document.body) {
+                    e.preventDefault();
+                }
+            }
         }
     </script>
 </body>
