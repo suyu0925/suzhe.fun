@@ -29,6 +29,7 @@
 
 <script>
 import additive from '@/equation/additive'
+import subtraction from '@/equation/subtraction'
 import division from '@/equation/division'
 import parentheses from '@/equation/parentheses'
 import multiplication from '@/equation/multiplication'
@@ -68,6 +69,14 @@ export default {
           return additive(1, 1)
         } else if (this.config.type === 'additive_2') {
           return additive(1, 2)
+        } else if (this.config.type === 'additive_3') {
+          return additive(1, 3)
+        } else if (this.config.type === 'subtraction_1') {
+          return subtraction(1, 1)
+        } else if (this.config.type === 'subtraction_2') {
+          return subtraction(1, 2)
+        } else if (this.config.type === 'additive_4') {
+          return parentheses(1, 1)
         }
       } else if (this.config.grade === 3) {
         if (this.config.type === 'devide_1') {

@@ -55,6 +55,22 @@ export default {
           {
             label: '加法练习（2）',
             value: 'additive_2'
+          },
+          {
+            label: '加法练习（3）',
+            value: 'additive_3'
+          },
+          {
+            label: '20以内减法',
+            value: 'subtraction_1'
+          },
+          {
+            label: '100以内减法',
+            value: 'subtraction_2'
+          },
+          {
+            label: '括号练习（1）',
+            value: 'additive_4'
           }
         ]
       } else if (this.value.grade === 3) {

@@ -16,6 +16,14 @@ const additive = function (grade, type) {
     b = randrange(1, 20)
     return `${a}+${b}=`
   }
+
+  // a|aa + b|bb = x, 100以内加法
+  if (grade === 1 && type === 3) {
+    let a, b
+    a = randrange(1, 50)
+    b = randrange(1, 50)
+    return `${a}+${b}=`
+  }
 }
 
 export default additive

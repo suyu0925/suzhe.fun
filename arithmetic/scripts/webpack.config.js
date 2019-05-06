@@ -54,5 +54,10 @@ module.exports = {
       from: resolve(src, './favicon.ico')
     }]),
     new VueLoaderPlugin()
-  ]
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  }
 }
