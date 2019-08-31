@@ -6,6 +6,6 @@ const koa = new Koa()
 
 koa.use(Static(__dirname + '/../dist'))
 
-koa.listen(80, () => {
+koa.listen(8200, () => {
   logger.info(`arithmetic server is running on port 80`)
 })
