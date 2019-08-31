@@ -33,6 +33,7 @@ import subtraction from '@/equation/subtraction'
 import division from '@/equation/division'
 import parentheses from '@/equation/parentheses'
 import multiplication from '@/equation/multiplication'
+import mix from '@/equation/mix'
 
 export default {
   name: 'paper',
@@ -48,6 +49,11 @@ export default {
         this.config.type === 'parentheses_2'
       ) {
         return { rows: 20, cols: 3 }
+      } else if (
+        this.config.type === 'mix_blow_10' ||
+        this.config.type === 'mix_blow_20'
+      ) {
+        return { rows: 20, cols: 4 }
       } else {
         return { rows: 20, cols: 5 }
       }
@@ -75,8 +81,24 @@ export default {
           return subtraction(1, 1)
         } else if (this.config.type === 'subtraction_2') {
           return subtraction(1, 2)
+        } else if (this.config.type === 'subtraction_3') {
+          return subtraction(1, 3)
         } else if (this.config.type === 'additive_4') {
           return parentheses(1, 1)
+        } else if (this.config.type === 'mix_blow_10') {
+          const a = Math.random()
+          if (a < 0.5) {
+            return additive(1, 1)
+          } else {
+            return subtraction(1, 1)
+          }
+        } else if (this.config.type === 'mix_blow_20') {
+          const a = Math.random()
+          if (a < 0.5) {
+            return additive(1, 2)
+          } else {
+            return subtraction(1, 2)
+          }
         }
       } else if (this.config.grade === 3) {
         if (this.config.type === 'devide_1') {

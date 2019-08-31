@@ -61,12 +61,24 @@ export default {
             value: 'additive_3'
           },
           {
-            label: '20以内减法',
+            label: '10以内减法',
             value: 'subtraction_1'
           },
           {
-            label: '100以内减法',
+            label: '20以内减法',
             value: 'subtraction_2'
+          },
+          {
+            label: '100以内减法',
+            value: 'subtraction_3'
+          },
+          {
+            label: '10以内混合加减',
+            value: 'mix_blow_10'
+          },
+          {
+            label: '20以内混合加减',
+            value: 'mix_blow_20'
           },
           {
             label: '括号练习（1）',
