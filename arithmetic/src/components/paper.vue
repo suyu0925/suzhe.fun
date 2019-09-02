@@ -19,7 +19,7 @@
         <div class="info">得分</div>
       </el-col>
     </el-row>
-    <el-row :gutter="getGutter()" v-for="row in layout.rows" :key="row">
+    <el-row type="flex" justify="space-around" v-for="row in layout.rows" :key="row">
       <el-col :span="Math.floor(24 / layout.cols)" v-for="col in layout.cols" :key="col">
         <span class="equation" v-html="getEquationHtml(row, col)"></span>
       </el-col>
@@ -49,11 +49,6 @@ export default {
         this.config.type === 'parentheses_2'
       ) {
         return { rows: 20, cols: 3 }
-      } else if (
-        this.config.type === 'mix_blow_10' ||
-        this.config.type === 'mix_blow_20'
-      ) {
-        return { rows: 20, cols: 4 }
       } else {
         return { rows: 20, cols: 5 }
       }
@@ -134,16 +129,6 @@ export default {
         }
       }
       return ''
-    },
-    getGutter() {
-      if (this.layout.cols > 1) {
-        const gap =
-          ((24 / this.layout.cols - Math.floor(24 / this.layout.cols)) * 595) /
-          (this.layout.cols - 1)
-        return Math.floor(gap)
-      } else {
-        return 0
-      }
     }
   }
 }
