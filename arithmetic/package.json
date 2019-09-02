@@ -12,6 +12,7 @@
   "dependencies": {
     "algebra.js": "^0.2.6",
     "element-ui": "^2.4.11",
+    "js-cookie": "^2.2.1",
     "koa": "^2.6.2",
     "koa-static": "^5.0.0",
     "printd": "^1.4.0",
