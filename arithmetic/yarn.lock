@@ -3713,10 +3713,10 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-printd@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/printd/-/printd-1.0.1.tgz#fddfb374b14130d8aa31f02734e3a0f103f6ad98"
-  integrity sha512-RChuliLOa8Tjm5aTUaY52ZiImQZ9SwaSuFPhuMNZ5A8JjXEGl9ZqjDKZj8Jh5nQ19bbXnD3fOvFeE5oZIx2zuw==
+printd@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/printd/-/printd-1.4.0.tgz#84fca4936c45d389da14ac0b5772b645895269fc"
+  integrity sha512-iZ+fISToxu/lDy3v9XBY8jA8+tffdmpQHYPPR5Ex2MJ4eGrvp0s5RdKv2bE8LECMkRM8YDbEybWrv47X60jiUQ==
 
 process-nextick-args@~2.0.0:
   version "2.0.0"

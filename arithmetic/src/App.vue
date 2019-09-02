@@ -38,24 +38,17 @@ export default {
   },
   methods: {
     print() {
+      const that = this
       this.loading = true
-      this.d.print(this.$refs.paper.$el, cssText, (win, doc, node, launch) => {
-        // 添加element-ui的css
-        const link = win.document.createElement('link')
-        link.setAttribute('rel', 'stylesheet')
-        link.setAttribute('type', 'text/css')
-        link.setAttribute(
-          'href',
-          'https://unpkg.com/element-ui/lib/theme-chalk/index.css'
-        )
-        win.document.getElementsByTagName('head')[0].appendChild(link)
-
-        // 给1秒的时候让它下载css文件
-        setTimeout(() => {
-          launch(win)
+      this.d.print(
+        this.$refs.paper.$el,
+        ['https://unpkg.com/element-ui/lib/theme-chalk/index.css', cssText],
+        [],
+        ({ launchPrint }) => {
           this.loading = false
-        }, 1000)
-      })
+          launchPrint()
+        }
+      )
     },
     refresh() {
       // 随便改下config，让它刷新
